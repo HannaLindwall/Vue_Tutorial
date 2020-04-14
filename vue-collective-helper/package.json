@@ -15,7 +15,7 @@
     "forwarded": "^0.1.2",
     "fresh": "^0.5.2",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.12",
+    "lodash": "^4.17.13",
     "macaddress": "^0.2.9",
     "mime": "^1.4.1",
     "minimist": "^1.2.3",
