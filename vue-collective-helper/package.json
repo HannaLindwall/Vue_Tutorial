@@ -19,10 +19,13 @@
     "macaddress": "^0.2.9",
     "mime": "^1.4.1",
     "minimist": "^1.2.3",
+    "primeicons": "^2.0.0",
+    "primevue": "^1.2.0",
     "querystringify": "^2.0.0",
     "sshpk": "^1.13.2",
     "tar": "^2.2.2",
     "tough-cookie": "^2.3.3",
+    "url-loader": "^4.1.0",
     "url-parse": "^1.4.3",
     "vue": "^2.3.3"
   },

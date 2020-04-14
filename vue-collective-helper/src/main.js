@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import routes from './routes'
 
+import 'primevue/resources/themes/nova-light/theme.css'
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
+
 const app = new Vue({
   el: '#app',
   data: {

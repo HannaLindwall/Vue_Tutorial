@@ -40,8 +40,8 @@
     list-style: none;
     text-align: center;
     padding-left: 0;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     background: rgb(233, 245, 235);
   }
   .container ul li {

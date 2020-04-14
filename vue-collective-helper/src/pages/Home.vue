@@ -10,6 +10,11 @@
   export default {
     components: {
       MainLayout
+    },
+    data() {
+      return {
+          value: null
+      }
     }
   }
 </script>
