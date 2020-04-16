@@ -1,6 +1,9 @@
 <template>
   <main-layout>
-    <p>Laundry page</p>
+    <div class="laundry-sidebar">
+    </div>
+    <div class="">
+    </div>
   </main-layout>
 </template>
 

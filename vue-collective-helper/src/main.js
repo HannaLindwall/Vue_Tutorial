@@ -1,5 +1,11 @@
 import Vue from 'vue'
 import routes from './routes'
+import InputText from 'primevue/inputtext'
+import Button from 'primevue/button'
+
+Vue.component('InputText', InputText)
+Vue.component('Button', Button)
+Vue.component('p-calendar', calendar)
 
 import 'primevue/resources/themes/nova-light/theme.css'
 import 'primevue/resources/primevue.min.css'

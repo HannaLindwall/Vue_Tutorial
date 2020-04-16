@@ -10,8 +10,9 @@
         <v-link href="/cleaning">Cleaning</v-link>
       </li>
     </ul>
-
-    <slot></slot>
+    <div class="home-container">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -33,8 +34,9 @@
 <style scoped lang="css">
   .container {
     max-width: 100%;
-    background: white;
+    background-color: rgba(240, 246, 243, 0.4);;
     font-family: 'Montserrat', sans-serif;
+    margin: 0px;
   }
   .container ul {
     list-style: none;
@@ -56,10 +58,15 @@
   }
   .block-link {
     display: block;
+    background: white;
   }
   .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  .home-container {
+    display: grid;
+    grid-template-columns: 410px 1fr;
   }
 </style>
