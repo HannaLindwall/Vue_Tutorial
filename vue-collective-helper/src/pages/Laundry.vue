@@ -2,7 +2,7 @@
   <main-layout>
     <div class="laundry-sidebar">
     </div>
-    <div class="">
+    <div class="laundry-booking-container">
     </div>
   </main-layout>
 </template>

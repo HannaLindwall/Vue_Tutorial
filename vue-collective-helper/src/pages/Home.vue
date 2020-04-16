@@ -98,7 +98,6 @@
   .neewsfeed-container ul {
     width: 60vw;
     border-radius: 10px;
-    border: solid 2px #e6e6e6
   }
   .neewsfeed-container ul>li {
    background: white;

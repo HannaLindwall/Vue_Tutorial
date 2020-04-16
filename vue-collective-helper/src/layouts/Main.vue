@@ -68,5 +68,6 @@
   .home-container {
     display: grid;
     grid-template-columns: 410px 1fr;
+    min-height: 700px;
   }
 </style>

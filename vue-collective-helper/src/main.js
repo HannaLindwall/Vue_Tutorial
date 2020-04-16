@@ -2,7 +2,10 @@ import Vue from 'vue'
 import routes from './routes'
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
+import PrettyCheck from 'pretty-checkbox-vue/check';
 
+
+Vue.component('p-check', PrettyCheck);
 Vue.component('InputText', InputText)
 Vue.component('Button', Button)
 Vue.component('p-calendar', calendar)

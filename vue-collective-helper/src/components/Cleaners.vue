@@ -46,14 +46,14 @@ h3, p {
     display: flex;
     margin-top: 30px;
   }
-.home-sidebar .list-cleaning-names ul {
+.list-cleaning-names ul {
     list-style-type: circle;
     padding-left: 20px;
     padding-top: 0px;
     padding-bottom: 0px;
     background: none;
 }
-.home-sidebar .list-cleaning-names ul li{
+.list-cleaning-names ul li{
     color: gray;
     padding-bottom: 10px;
     display: list-item;
