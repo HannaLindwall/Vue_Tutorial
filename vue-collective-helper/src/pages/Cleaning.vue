@@ -87,7 +87,6 @@ h1 {
 .cleaning-checklist-container div>ul>li {
   background: white;
   color: gray;
-  display: block;
   text-align: left; 
   width: 80%; 
   display: inline-block;

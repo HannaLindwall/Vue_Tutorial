@@ -23,18 +23,13 @@
     components: {
       VLink
     },
-    methods: {
-      clickRoute() {
-        console.log("clicked");
-      }
-    }
   }
 </script>
 
 <style scoped lang="css">
   .container {
     max-width: 100%;
-    background-color: rgba(240, 246, 243, 0.4);;
+    background-color: rgba(240, 246, 243, 0.4);
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
   }
