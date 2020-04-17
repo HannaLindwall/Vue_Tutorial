@@ -103,6 +103,9 @@
 h1, h3, p {
   color: gray;
 }
+.laundry-container {
+  margin-bottom: 100px;
+}
 .laundry-sidebar {
   margin-left: 20px;
 }
@@ -142,7 +145,6 @@ h1, h3, p {
   background: white;
   width: 50%;
   padding: 0px;
-  border-top: solid 1px lightgray;
 }
 .laundry-container>div>ul>span>li {
   text-align: left;
@@ -165,7 +167,6 @@ h1, h3, p {
 .laundry-timeslots-container>div>ul>li {
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: solid 1px lightgray;
   margin: 0px;
 }
 .laundry-timeslots-container>div>ul>li:nth-child(odd) {
