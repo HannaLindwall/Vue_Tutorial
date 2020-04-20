@@ -93,9 +93,7 @@
     },
     created() {
       this.bookings = fetchData.getBookings()
-      console.log(this.bookings)
       this.nbrOfBookings = this.bookings.length
-      console.log("antalet bokningar: " + this.nbrOfBookings)
       this.availableSlots = fetchData.getAvailableSlots()
       this.nbrOfAvailableSlots = this.availableSlots.length
     }

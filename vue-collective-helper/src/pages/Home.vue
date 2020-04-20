@@ -4,7 +4,7 @@
         <div class="home-sidebar-cal">
           <p-calendar v-model="date14" :inline="true" :showWeek="true"></p-calendar>
         </div>
-        <cleaners />
+        <cleaner-list />
       </div>
       <div class="neewsfeed-container">
         <h1>News Feed</h1>
@@ -27,13 +27,13 @@
 
 <script>
   import MainLayout from '../layouts/Main.vue'
-  import Cleaners from '../components/Cleaners.vue'
+  import CleanerList from '../components/CleanerList.vue'
   import fetchData from "../api/fetchData.js"
 
   export default {
     components: {
       MainLayout,
-      Cleaners
+      CleanerList
     },
     data() {
       return {
