@@ -68,17 +68,14 @@
 </script>
 
 <style scoped lang="css">
-.cleaning-sidebar {
+h1 {
   color: gray;
+  margin-left: 20px;
 }
 .cleaning-checklist-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 20px 20px 20px 20px;
-}
-h1 {
-  color: gray;
-  margin-left: 20px;
 }
 .cleaning-checklist-container div>ul {
   margin: 20px 20px 20px 20px;
@@ -92,6 +89,9 @@ h1 {
   display: inline-block;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.cleaning-sidebar {
+  color: gray;
 }
 .margin-to-the-left {
   margin-left: 20px;

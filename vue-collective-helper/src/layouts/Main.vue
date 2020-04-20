@@ -27,6 +27,15 @@
 </script>
 
 <style scoped lang="css">
+  .block-link {
+    display: block;
+    background: white;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .container {
     max-width: 100%;
     background-color: rgba(240, 246, 243, 0.4);
@@ -50,15 +59,6 @@
     font-weight: bold;
     color: gray;
     font-size: x-large;
-  }
-  .block-link {
-    display: block;
-    background: white;
-  }
-  .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
   .home-container {
     display: grid;

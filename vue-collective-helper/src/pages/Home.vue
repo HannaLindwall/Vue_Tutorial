@@ -85,12 +85,12 @@
 </script>
 
 <style scoped lang="css">
+  h1, h3, p, span {
+    color: gray;
+  }
   .home-sidebar {
     padding-left: 20px;
     margin-top: 30px;
-  }
-  h1, h3, p, span {
-    color: gray;
   }
   .neewsfeed-container {
     margin-left: 100px;
@@ -111,10 +111,6 @@
     text-align: left;
     overflow: auto;
   }
-  .neewsfeed-container ul>li>div>div>span {
-    line-height: 2;
-    white-space: pre-line;
-  }
   .neewsfeed-container ul>li>div>div>button {
     font-size: medium;
     color:lightblue;
@@ -126,5 +122,9 @@
   }
   .neewsfeed-container ul>li>div>div>button:focus {
     outline: 0;
+  }
+  .neewsfeed-container ul>li>div>div>span {
+    line-height: 2;
+    white-space: pre-line;
   }
 </style>
