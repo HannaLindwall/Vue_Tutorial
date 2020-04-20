@@ -35,6 +35,7 @@
 <script>
   import MainLayout from '../layouts/Main.vue'
   import Cleaners from '../components/Cleaners.vue'
+  import fetchData from "../api/fetchData.js"
 
   export default {
     components: {
@@ -43,15 +44,9 @@
     }, 
     data() {
       return {
-        weeklycleaning: [
-          "item1",
-          "item2"
-        ],
+        weeklycleaning: [],
         selectedWeeklyItems: [],
-        bigcleaning: [
-          "item1",
-          "item2"
-        ],
+        bigcleaning: [],
         selectedBigItems: []
       }
     },
@@ -64,6 +59,10 @@
         console.log(newVal)
       }
     },
+    created() {
+      this.weeklycleaning = fetchData.getWeeklyCleaningList()
+      this.bigcleaning = fetchData.getBigCleaningList()
+    }
   }
 </script>
 

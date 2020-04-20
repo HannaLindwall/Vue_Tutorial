@@ -28,6 +28,7 @@
 <script>
   import MainLayout from '../layouts/Main.vue'
   import Cleaners from '../components/Cleaners.vue'
+  import fetchData from "../api/fetchData.js"
 
   export default {
     components: {
@@ -36,33 +37,8 @@
     },
     data() {
       return {
-        value: null,
-        cleaners: [
-          "Name1",
-          "Name2"
-        ],
-        date: {
-          "date": "XX/XX-XX",
-          "daysleft": "X"
-        },
-        news: [
-          {
-            "key": 0,
-            "title": "Newsfeed title 1", 
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "readMoreActivated": false,
-            "readLessActivated": true,
-            "readText": "(Read More)"
-          },
-          {
-            "key": 1,
-            "title": "Newsfeed title 2",
-            "text": "Newsfeed text 2",
-            "readMoreActivated": true,
-            "readLessActivated": true,
-            "readText": ""
-          }
-        ],
+        date14: null,
+        news: [],
       }
     },
     methods: {
@@ -80,6 +56,9 @@
         this.news[key].readText = "(Read More)"
         this.news[key].readMoreActivated = false
       }
+    },
+    created() {
+      this.news = fetchData.getNews()
     }
   }
 </script>

@@ -50,6 +50,7 @@
 
 <script>
   import MainLayout from '../layouts/Main.vue'
+  import fetchData from "../api/fetchData.js"
 
   export default {
     components: {
@@ -57,18 +58,12 @@
     },
     data() {
       return {
-        nbrOfBookings: 1,
+        nbrOfBookings: 0,
         noBookings: "No current bookings.",
-        bookings: [
-          {"title": "1", "date": "XX/XX-XX", "time": 10},
-          {"title": "2", "date": "XX/XX-XX", "time": 16}
-        ],
-        nbrOfAvailableSlots: 1,
+        bookings: [],
+        nbrOfAvailableSlots: 0,
         noAvailableSlots: "No time slots for the chosen date.",
-        availableSlots: [
-          {time: 12, machines: ["1", "2"]},
-          {time: 14, machines: ["2", "3"]},
-        ],
+        availableSlots: [],
         buttonStyle: {
           backgroundColor: "gray",
           color: "lightgray"
@@ -95,6 +90,14 @@
         this.availableSlots.find(function(slot, index) {return slot.time===starttime}).machines.push(title)
         this.bookings.splice(bookingIndex, 1)
       }
+    },
+    created() {
+      this.bookings = fetchData.getBookings()
+      console.log(this.bookings)
+      this.nbrOfBookings = this.bookings.length
+      console.log("antalet bokningar: " + this.nbrOfBookings)
+      this.availableSlots = fetchData.getAvailableSlots()
+      this.nbrOfAvailableSlots = this.availableSlots.length
     }
   }
 </script>

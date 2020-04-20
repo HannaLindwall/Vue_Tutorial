@@ -19,22 +19,22 @@
 </template>
 
 <script>
+import fetchData from "../api/fetchData.js"
   
   export default {
     components: {
     },
     data() {
         return {
-            cleaners: [
-                "Name1",
-                "Name2"
-            ],
-            date: {
-            "date": "XX/XX-XX",
-            "daysleft": "X"
-            },
+            cleaners: [],
+            date: null,
         }
+    },
+    created() {
+        this.cleaners = fetchData.getWeeklyCleaners()
+        this. date = fetchData.getDateOfBigCleaning()
     }
+    
   }
 </script>
 
