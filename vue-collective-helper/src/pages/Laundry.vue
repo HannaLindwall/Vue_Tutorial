@@ -6,7 +6,7 @@
       <div class="bookings-container" v-if="nbrOfBookings!==0">
         <ul class="bookings-list">
           <transition-group name="machine-list" enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
-            <li class="booking-listitem" v-for="(booking, index) in bookings" :key='index'>
+            <li class="booking-listitem" v-for="(booking, index) in bookings" :key="`booking.title-${index}`">
               <div class="booking-content">
                 <p>Machine: {{booking.title}}</p>
                 <p>Date: {{booking.date}}</p>
@@ -30,12 +30,12 @@
       </div>
       <div class="timeslot-container" v-if="nbrOfAvailableSlots!==0">
         <ul class="timeslot-list">
-          <li class="timeslot-listitem" v-for="(availableSlot, slotindex) in availableSlots" :key='slotindex'>
+          <li class="timeslot-listitem" v-for="(availableSlot, slotindex) in availableSlots" :key="`availableSlot.time-${slotindex}`">
             <div class="timeslot-content">
               <h3>Time: {{availableSlot.time}}:00-{{calculateEndTime(availableSlot.time)}}:00</h3>
               <ul class="machines-list">
                 <transition-group name="machine-list" enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
-                  <li class="machine-listitem" v-for="(availableMachine, machineindex) in availableSlot.machines" :key='machineindex' transition="fade">
+                  <li class="machine-listitem" v-for="(availableMachine, machineindex) in availableSlot.machines" :key="`availableMachine-${machineindex}`" transition="fade">
                       <button class="machine-button" :style="buttonStyle" v-on:click="clickOnMachine(slotindex, availableSlot.time, availableMachine, machineindex)">{{availableMachine}}</button>
                   </li>
                 </transition-group>
@@ -73,7 +73,8 @@
           backgroundColor: "gray",
           color: "lightgray"
         },
-        selectedDate: "XX/XX-XX"
+        selectedDate: "XX/XX-XX",
+        date14: null
       }
     },
     methods: {
@@ -103,8 +104,17 @@
 h1, h3, p {
   color: gray;
 }
+.laundry-cal {
+  margin-left: 22%;
+  margin-top: 80px;
+}
 .laundry-container {
   margin-bottom: 100px;
+}
+.laundry-container>div>ul>span>li {
+  text-align: left;
+  width: 100%;
+  margin-top: 10px;
 }
 .laundry-sidebar {
   margin-left: 20px;
@@ -112,10 +122,8 @@ h1, h3, p {
 .laundry-sidebar>.bookings-container {
   width: 80%;
 }
-.laundry-sidebar>.bookings-container>.bookings-list{
-  background: gray;
-}
 .laundry-sidebar>div>ul {
+  background: gray;
   border-radius: 10px;
   padding-top: 20px;
   padding-bottom: 30px;
@@ -124,9 +132,39 @@ h1, h3, p {
   display: inline-flex;
   justify-content: space-around;
 }
-.remove-booking-container {
-  display: flex;
-  align-items: center;
+.laundry-sidebar>div>ul>span>li>div>p {
+  margin: 5px;
+   color:  rgb(233, 245, 235);
+}
+.laundry-timeslots-container>div>ul {
+  background: white;
+  width: 50%;
+  padding: 0px;
+}
+.laundry-timeslots-container>div>ul>li {
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0px;
+}
+.laundry-timeslots-container>div>ul>li>div {
+  margin-left: 30px; 
+}
+.laundry-timeslots-container>div>ul>li:nth-child(odd) {
+  background: rgb(233, 245, 235);
+}
+.machine-button {
+  border: none;
+  border-radius: 50%;
+  padding: 10px 17px 10px 17px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.machine-button:focus {
+  outline: 0;
 }
 .remove-booking-button {
   border-radius: 5px;
@@ -138,48 +176,15 @@ h1, h3, p {
   height: 35px;
   width: 35px;
 }
-.timeslot-container {
-  margin-left: 15%;
-}
-.laundry-timeslots-container>div>ul {
-  background: white;
-  width: 50%;
-  padding: 0px;
-}
-.laundry-container>div>ul>span>li {
-  text-align: left;
-  width: 100%;
-  margin-top: 10px;
-}
-.laundry-cal {
-  margin-left: 22%;
-  margin-top: 80px;
+.remove-booking-container {
+  display: flex;
+  align-items: center;
 }
 .slot-text-style {
   margin-left: 25%;
 }
-.laundry-timeslots-container>div>ul>li {
-  display: inline-block;
-  text-align: left;
-  width: 100%;
-  margin-top: 10px;
-}
-.laundry-timeslots-container>div>ul>li {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin: 0px;
-}
-.laundry-timeslots-container>div>ul>li:nth-child(odd) {
-  background: rgb(233, 245, 235);
-}
-.laundry-timeslots-container>div>ul>li>div {
-  margin-left: 30px; 
-}
-.laundry-sidebar>div>ul>span>li>div>p {
-  margin: 5px;
-}
-.laundry-sidebar>div>ul>span>li>div>p {
-   color:  rgb(233, 245, 235);
+.timeslot-container {
+  margin-left: 15%;
 }
 .timeslot-content>.machines-list {
   background: none;
@@ -191,15 +196,5 @@ h1, h3, p {
 }
 .timeslot-content>.machines-list>span>.machine-listitem {
   padding-right: 20px;
-}
-.machine-button {
-  border: none;
-  border-radius: 50%;
-  padding: 10px 17px 10px 17px;
-  font-weight: bold;
-  font-size: 20px;
-}
-.machine-button:focus {
-  outline: 0;
 }
 </style>
