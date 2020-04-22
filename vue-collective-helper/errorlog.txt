@@ -1,0 +1,52 @@
+1. Gått tillbaka till korrekt commit
+2. Tagit bort package-lock och node_modules
+npm install - ger många varningar
+
+installerade om hela repot
+npm install -D sass-loader node-sass
+ use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+      ]
+npm install webpack@4.41.6 --save-dev
+Error: Cannot find module 'webpack/bin/config-yargs'
+npm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge
+Många varningar
+Updating webpack-dev-server@3.4.1
+TypeError: Cannot read property 'vue' of undefined
+npm install vue-loader@14.2.2 --save-dev
+TypeError: Cannot read property 'fileLoader' of undefined
+updated both url-loader and file-loader to latest
+No parser and no filepath given, using 'babel' the parser now but this will throw an error 
+in the future. Please specify a parser or a filepath so one can be inferred.
+npm install prettier@1.12.1
+Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optimization.minimize instead.
+-----------------------------
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: true,
+        compress: {
+          warnings: false,
+        },
+      }),
+    ],
+  },
+
+-----------------------------
+module.exports = {
+  optimization: {
+    minimize: false //Update this to true or false
+  }
+};
+-----------------------------
+Fryser
+Tog bort allt med uglifyjsplugin
+Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+ValidationError: Invalid options object. CSS Loader has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'minimize'. These properties are valid:
+   object { url?, import?, modules?, sourceMap?, importLoaders?, localsConvention?, onlyLocals?, esModule? }
+Och det är här jag ger upp
