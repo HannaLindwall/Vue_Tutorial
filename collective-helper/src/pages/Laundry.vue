@@ -1,6 +1,6 @@
 <template>
   <b-row class="fix-weight">
-    <b-col cols="3">
+    <b-col class="col-xl-3">
       <div class="laundry-sidebar laundry-container">
         <h1>My Bookings:</h1>
         <p v-if="nbrOfBookings===0">{{noBookings}}</p>
@@ -102,109 +102,7 @@
   }
 </script>
 
-<style scoped lang="css">
+<style scoped >
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
-h1, h3, p {
-  color: gray;
-}
-.fix-weight {
-  width: 100%;
-}
-.laundry-cal {
-  margin-left: 22%;
-  margin-top: 100px;
-}
-.laundry-container {
-  margin-bottom: 100px;
-  text-align: left;
-  margin-left: 10%;
-}
-.laundry-container>div>ul>span>li {
-  text-align: left;
-  width: 100%;
-  margin-top: 10px;
-}
-.laundry-sidebar {
-  margin-left: 50px;
-  margin-top: 100px;
-  text-align: left;
-}
-.laundry-sidebar>.bookings-container {
-  width: 80%;
-  margin-top: 50px;
-}
-.laundry-sidebar>div>ul {
-  background: gray;
-  border-radius: 10px;
-  padding-top: 20px;
-  padding-bottom: 30px;
-}
-.laundry-sidebar>.bookings-container>.bookings-list>span>.booking-listitem{
-  display: inline-flex;
-  justify-content: space-around;
-}
-.laundry-sidebar>div>ul>span>li>div>p {
-  margin: 5px;
-   color:  rgb(233, 245, 235);
-}
-.laundry-timeslots-container>div>ul {
-  background: white;
-  width: 50%;
-  padding: 0px;
-  margin-top: 50px;
-}
-.laundry-timeslots-container>div>ul>li {
-  display: inline-block;
-  text-align: left;
-  width: 100%;
-  margin-top: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin: 0px;
-}
-.laundry-timeslots-container>div>ul>li>div {
-  margin-left: 30px; 
-}
-.laundry-timeslots-container>div>ul>li:nth-child(odd) {
-  background: rgb(233, 245, 235);
-}
-.machine-button {
-  border: none;
-  border-radius: 50%;
-  padding: 10px 20px 10px 20px;
-  font-weight: bold;
-  font-size: 20px;
-}
-.machine-button:focus {
-  outline: 0;
-}
-.remove-booking-button {
-  border-radius: 5px;
-  background: none;
-  border: solid 1px rgb(233, 245, 235);
-  color: rgb(233, 245, 235);
-  padding: 5px 10px 5px 10px;
-  font-weight: bold;
-  height: 35px;
-  width: 35px;
-}
-.remove-booking-container {
-  display: flex;
-  align-items: center;
-}
-.timeslot-content {
-  padding-top: 15px;
-}
-.timeslot-content>.machines-list {
-  background: none;
-  padding: 10px 0px 10px 0px;
-  list-style: none;
-}
-.timeslot-content>.machines-list>span {
-  display: flex;
-  margin-bottom: 10px;
-}
-.timeslot-content>.machines-list>span>.machine-listitem {
-  padding-right: 20px;
-}
+@import "./stylesheets/Laundry.scss";
 </style>

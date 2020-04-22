@@ -40,32 +40,6 @@ import fetchData from "../api/fetchData.js"
   }
 </script>
 
-<style scoped lang="css">
-h3, p {
-    color: gray;
-}
-.list-cleaning-names {
-    display: flex;
-    margin-top: 30px;
-  }
-.list-cleaning-names ul {
-    list-style-type: circle;
-    padding-left: 20px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    background: none;
-}
-.list-cleaning-names ul li{
-    color: gray;
-    padding-bottom: 10px;
-    display: list-item;
-    text-align: left;
-}
-.next-cleaning {
-    text-align: center;
-    margin-top: 50px;
-}
-.style-weekly-cleaner {
-    margin-left: 50px;
-}
+<style scoped lang="scss">
+@import "./stylesheets/CleanerList.scss";
 </style>

@@ -65,55 +65,6 @@
   }
 </script>
 
-<style scoped lang="css">
-  h1, h3, p, span {
-    color: gray;
-  }
-  .fix-weight {
-    width: 100%;
-  } 
-  .home-sidebar {
-    padding-left: 20px;
-    margin-top: 100px;
-  }
-  .neewsfeed-container {
-    margin: 100px 100px 100px 0px;
-    text-align: left;
-  }
-  .neewsfeed-container ul {
-    width: 60vw;
-    border-radius: 10px;
-    list-style: none;
-    background: rgb(233, 245, 235);
-    padding: 50px 50px 30px 50px;
-    margin-top: 50px;
-  }
-  .neewsfeed-container ul>li {
-   background: white;
-   margin: 20px 20px 50px 20px;
-   max-height: 305px;
-   border-radius: 5px;
-   overflow: auto;
-  }
-  .neewsfeed-container ul>li>div {
-    padding: 20px;
-    width: 100%;
-    text-align: left;
-  }
-  .neewsfeed-container ul>li>div>div>button {
-    font-size: medium;
-    color:lightblue;
-    border: none;
-    background: white;
-  }
-  .neewsfeed-container ul>li>div>div>button:hover {
-    text-decoration: underline;
-  }
-  .neewsfeed-container ul>li>div>div>button:focus {
-    outline: 0;
-  }
-  .neewsfeed-container ul>li>div>div>span {
-    line-height: 2;
-    white-space: pre-line;
-  }
+<style scoped lang="scss">
+ @import "./stylesheets/Home.scss";
 </style>

@@ -40,35 +40,6 @@ export default {
 }
 </script>
 
-<style scoped lang="css">
-
-h1 {
-    color: gray;
-}
-
-.cleaninglist-container>ul {
-    margin: 50px 20px 20px 20px;
-    border-radius: 10px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background: rgb(233, 245, 235);
-    text-align: center;
-    padding-left: 0px;
-}
-.cleaninglist-container>ul>li {
-  background: white;
-  color: gray;
-  text-align: left; 
-  width: 80%; 
-  list-style: none;
-  text-align: left;
-  display: inline-block;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.margin-to-the-left {
-    margin-left: 20px;
-}
-
+<style scoped lang="scss">
+@import "./stylesheets/CleaningList.scss";
 </style>

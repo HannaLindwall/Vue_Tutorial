@@ -43,20 +43,6 @@
   }
 </script>
 
-<style scoped lang="css">
-h1 {
-  color: gray;
-  margin-left: 20px;
-}
-.cleaning-checklists-container {
-  margin: 100px 20px 100px 20px;
-}
-
-.cleaning-sidebar {
-  margin-top: 100px;
-  color: gray;
-}
-.fix-weight {
-  width: 100%;
-}
+<style scoped lang="scss">
+@import "./stylesheets/Cleaning.scss";
 </style>
