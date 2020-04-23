@@ -13,3 +13,9 @@ h1 {
   .fix-weight {
     width: 100%;
   }
+
+  @media screen and (max-width: 787px) {
+    .cleaning-checklists-container {
+      margin: 50px 20px 100px 20px;
+    }
+  }

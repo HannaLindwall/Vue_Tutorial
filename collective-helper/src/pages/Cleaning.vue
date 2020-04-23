@@ -1,6 +1,6 @@
 <template>
   <b-row class="fix-weight">
-    <b-col cols="3">
+    <b-col class="col-lg-3">
       <div class="cleaning-sidebar">
         <cleaner-list />
       </div>
