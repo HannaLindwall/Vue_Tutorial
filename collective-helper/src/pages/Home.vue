@@ -45,15 +45,11 @@
     },
     methods: {
       activateReadMore(key) {
-        var isReadMoreActivated = this.news[key].readMoreActivated
-        console.log("just testing" + isReadMoreActivated)
         this.news[key].readMoreActivated = true
         this.news[key].readText = "(Read Less)"
         this.news[key].readLessActivated = false
       },
       activateReadLess(key) {
-        var isReadLessActivated = this.news[key].readLessActivated
-        console.log("just testing" + isReadLessActivated)
         this.news[key].readLessActivated = true
         this.news[key].readText = "(Read More)"
         this.news[key].readMoreActivated = false

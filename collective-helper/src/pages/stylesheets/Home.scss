@@ -49,14 +49,31 @@ h1, h3, p, span {
     white-space: pre-line;
   }
 
-  @media screen and (max-width: 1500px) {
+  @media screen and (max-width: 1600px) {
     .neewsfeed-container {
       margin: 100px 50px 100px 50px;
     }
   }
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1500px) {
     .neewsfeed-container {
       margin: 100px 20px 100px 20px;
+    }
+  }
+  @media screen and (max-width: 1310px) {
+    #app>div {
+      margin: 0px;
+    }
+    #app>div>div {
+      padding: 0px;
+    }
+    .neewsfeed-container {
+      margin: 50px 0px 100px 0px;
+      text-align: center;
+    }
+    .neewsfeed-container>ul {
+      padding: 50px 0px;
+      margin: auto;
+      width: 80vw;
     }
   }
   @media screen and (max-width: 900px) {
@@ -68,7 +85,6 @@ h1, h3, p, span {
       text-align: center;
     }
     .neewsfeed-container>ul {
-      width: 93vw;
       padding: 50px 0px 20px 0px;
     }
   }

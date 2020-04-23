@@ -26,15 +26,32 @@ h3, p {
     margin-left: 50px;
 }
 
-
+@media screen and (max-width: 1670px) {
+    .weekly-cleaner {
+      text-align: left;
+    }
+  }
 @media screen and (max-width: 1600px) {
     .style-weekly-cleaner {
         text-align: left;
     }
 }
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1310px) {
+    .list-cleaning-names {
+        display: inline-block;
+    }
     .list-cleaning-names>img {
         height: 100px;
+        width: 140px;
+    }
+    .next-cleaning {
+        margin-top: 2px;
+    }
+    .style-weekly-cleaner {
+        text-align: center;
+        width: 100%;
+        margin-left: 0px;
+        margin-top: 20px;
     }
 }
 @media screen and (max-width: 1000px) {
