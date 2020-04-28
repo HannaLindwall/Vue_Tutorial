@@ -12,7 +12,7 @@
       <div class="neewsfeed-container">
         <h1>News Feed</h1>
           <ul class="neewsfeed-list">
-            <li v-for="(newsdata, index) in news" :key='index'>
+            <li v-for="(newsdata) in news" :key='newsdata._id'>
               <div>
                 <h3>{{newsdata.title}}</h3>
                 <div>
@@ -55,8 +55,13 @@
         this.news[key].readMoreActivated = false
       }
     },
-    created() {
-      this.news = fetchData.getNews()
+    async created() {
+      try {
+        const newsfeed = await fetchData.getNews()
+        this.news = newsfeed.data
+      } catch(err) {
+        console.log(err.message)
+      }
     }
   }
 </script>

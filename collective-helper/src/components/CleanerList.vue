@@ -15,7 +15,7 @@
         </div>
         <div class="next-cleaning">
             <h3>Next Collective Cleaning:</h3>
-            <p> {{date.date}} ({{date.daysleft}} days left) </p>
+            <p> {{date.date}} ({{date.nextcleaningdate}}) </p>
         </div>
     </div>
 </template>
@@ -29,12 +29,19 @@ import fetchData from "../api/fetchData.js"
     data() {
         return {
             cleaners: [],
-            date: null,
+            date: {date: "", nextcleaningdate: ""},
         }
     },
-    created() {
-        this.cleaners = fetchData.getWeeklyCleaners()
-        this. date = fetchData.getDateOfBigCleaning()
+    async created() {
+        try {
+            const cleanerList = await fetchData.getWeeklyCleaners()
+            this.cleaners = cleanerList.data
+            const nextcleaningdate = await fetchData.getDateOfBigCleaning()
+            this.date = nextcleaningdate.data
+
+        } catch(err) {
+            console.log(err.message)
+        }
     }
     
   }

@@ -7,11 +7,11 @@
         <div class="bookings-container" v-if="nbrOfBookings!==0">
           <ul class="bookings-list">
             <transition-group name="machine-list" enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
-              <li class="booking-listitem" v-for="(booking, index) in bookings" :key="`booking.title-${index}`">
+              <li class="booking-listitem" v-for="(booking, index) in bookings" :key="`booking.machine-${index}`">
                 <div class="booking-content">
-                  <p>Machine: {{booking.title}}</p>
-                  <p>Date: {{booking.date}}</p>
-                  <p>Time: {{booking.time}}:00-{{calculateEndTime(booking.time)}}:00</p>
+                  <p>Machine: {{booking.machine}}</p>
+                  <p>Date: {{booking.dateOnly}}</p>
+                  <p>Time: {{booking.timeOnly}}-{{calculateEndTime(booking.timeOnly)}}:00</p>
                 </div>
                 <div class="remove-booking-container">
                   <button class="remove-booking-button" v-on:click="removeBooking(index)">X</button>
@@ -35,7 +35,7 @@
           <ul class="timeslot-list">
             <li class="timeslot-listitem" v-for="(availableSlot, slotindex) in availableSlots" :key="`availableSlot.time-${slotindex}`">
               <div class="timeslot-content">
-                <h3>Time: {{availableSlot.time}}:00-{{calculateEndTime(availableSlot.time)}}:00</h3>
+                <h3>Time: {{availableSlot.startTime}}:00-{{availableSlot.endTime}}:00</h3>
                 <ul class="machines-list">
                   <transition-group name="machine-list" enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
                     <li class="machine-listitem" v-for="(availableMachine, machineindex) in availableSlot.machines" :key="`availableMachine-${machineindex}`" transition="fade">
@@ -70,17 +70,15 @@
           backgroundColor: "gray",
           color: "lightgray"
         },
-        selectedDate: "XX/XX-XX",
-        date14: null
+        selectedDate: "2020-04-28",
+        date14: null,
+        user: "Hanna Lindwall",
       }
     },
     methods: {
       calculateEndTime(startTime) {
-        var endTime = startTime+2
-        if (endTime > 23) {
-          endTime = endTime - 20
-        }
-        return endTime
+        var time = startTime.split(":")[0]
+        return parseInt(time, 10) + 4
       },
       clickOnMachine(slotIndex, starttime, machine, machineindex) {
         this.bookings.push({"title": machine, date: this.selectedDate,"time": starttime})
@@ -93,11 +91,17 @@
         this.bookings.splice(bookingIndex, 1)
       }
     },
-    created() {
-      this.bookings = fetchData.getBookings()
-      this.nbrOfBookings = this.bookings.length
-      this.availableSlots = fetchData.getAvailableSlots()
-      this.nbrOfAvailableSlots = this.availableSlots.length
+    async created() {
+      try {
+        const bookings = await fetchData.getBookings(this.user)
+        this.bookings = bookings.data
+        this.nbrOfBookings = this.bookings.length
+        const availableSlots = await fetchData.getAvailableSlots(this.selectedDate)
+        this.availableSlots = availableSlots.data
+        this.nbrOfAvailableSlots = this.availableSlots.length
+      } catch(err) {
+        console.log(err.message)
+      }
     }
   }
 </script>

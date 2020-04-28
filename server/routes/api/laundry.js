@@ -2,6 +2,7 @@ const express = require('express');
 const mongodb = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+const moment = require('moment');
 
 const uri = 'mongodb+srv://test123:test123@vueapp-xtm7t.mongodb.net/test?retryWrites=true&w=majority';
 const dbName = "vue_express_database";
@@ -10,11 +11,7 @@ const timeslots_collection_name = "timeslots_collection";
 
 const laundryRouter = express.Router();
 
-
-
-
 // Get available timeslots for doing laundry
-// TODO
 laundryRouter.get('/availabletimeslots/:date', async (req, res) => {
     await MongoClient.connect(uri, {
         useNewUrlParser: true,
@@ -67,9 +64,22 @@ laundryRouter.get('/bookings/:user', async(req, res) => {
         assert.equal(null, err);
         console.log("Connected successfully to server");
         const dBase = client.db(dbName);
-        await getBookings(collection_name, dBase, req.params.user, function callback(resp) {
-            client.close()
-            return res.send(JSON.stringify(resp));
+        await getBookings(collection_name, dBase, req.params.user, function callback(bookings) {
+            try {
+                const restructBookings = bookings.map(booking => {
+                    const id = booking._id
+                    const machine = booking.machine
+                    const bookingDate = new Date(booking.date)
+                    const dateOnly = bookingDate.getUTCFullYear() + "-" + (bookingDate.getUTCMonth() + 1) + "-" + bookingDate.getUTCDate()
+                    const timeOnly = bookingDate.getUTCHours() + ":" + (bookingDate.getUTCMinutes()<10?'0':'') + bookingDate.getUTCMinutes()
+                    return {id, machine, dateOnly, timeOnly}
+                })
+                client.close()
+                return res.send(JSON.stringify(restructBookings));
+            } catch(err) {
+                client.close()
+                console.log(err.message)
+            }
         });
     });
 })
@@ -112,23 +122,6 @@ laundryRouter.delete('/bookings/:id', async(req, res) => {
         return res.status(200).send();
     });
 }) 
-
-// laundryRouter.get('/machines', async(req, res) => {
-//     const collection_name = "washing_machines_collection";
-//     await MongoClient.connect(uri, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     }, async function(err, client) {
-//         assert.equal(null, err);
-//         console.log("Connected successfully to server");
-
-//         const dBase = client.db(dbName);
-//         await getWashingMachines(collection_name, dBase, function callback(resp) {
-//             client.close()
-//             return res.send(JSON.stringify(resp));
-//         });
-//     });
-// })
 
 async function getBookingsForDate(collection_name, dBase, date, callback) {
     const bookingsCollection = dBase.collection(collection_name);

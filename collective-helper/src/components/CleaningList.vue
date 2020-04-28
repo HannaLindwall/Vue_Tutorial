@@ -5,7 +5,7 @@
           <li v-for="(clean, index) in cleaningList" :key='index'>
             <div class="margin-to-the-left">
               <p-check color="success">
-                  {{clean}}
+                  {{clean.cleaning_item}}
               </p-check>
             </div>
           </li>

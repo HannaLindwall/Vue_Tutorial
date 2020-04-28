@@ -36,9 +36,15 @@
         bigcleaning: [],
       }
     },
-    created() {
-      this.weeklycleaning = fetchData.getWeeklyCleaningList()
-      this.bigcleaning = fetchData.getBigCleaningList()
+    async created() {
+      try {
+        const weeklycleaning = await fetchData.getWeeklyCleaningList()
+        this.weeklycleaning = weeklycleaning.data
+        const bigcleaning = await fetchData.getBigCleaningList()
+        this.bigcleaning = bigcleaning.data
+      } catch(err) {
+        console.log(err.message)
+      }
     }
   }
 </script>

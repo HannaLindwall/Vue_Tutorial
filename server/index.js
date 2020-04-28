@@ -9,10 +9,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const cleaning = require("./routes/api/cleaning");
+const common = require("./routes/api/common");
 const home = require("./routes/api/home");
 const laundry = require("./routes/api/laundry");
 
 app.use("/api/cleaning", cleaning);
+app.use("/api/common", common);
 app.use("/api/home", home);
 app.use("/api/laundry", laundry);
 
