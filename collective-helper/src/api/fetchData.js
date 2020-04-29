@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const cleaning_url = 'http://localhost:5000/api/cleaning'
-const common_url = 'http://localhost:5000/api/common'
-const home_url = 'http://localhost:5000/api/home'
-const laundry_url = 'http://localhost:5000/api/laundry'
+const cleaning_url = 'api/cleaning'
+const common_url = 'api/common'
+const home_url = 'api/home'
+const laundry_url = 'api/laundry'
 
 function getAvailableSlots(date) {
     const uri = '/availabletimeslots/' + date
