@@ -100,9 +100,24 @@ function insertBooking(date, user, machine) {
 
 function removeBooking(id) {
     const uri = "/bookings/" + id
-    return axios.delete(laundry_url+uri)
+    return axios.delete(laundry_url + uri)
 }
 
+function updateBigCleaningItem(id, done) {
+    const uri = "/bigcleaninglist"
+    return axios.put(cleaning_url + uri, {
+        id,
+        done
+    })
+}
+
+function updateWeeklyCleaningItem(id, done) {
+    const uri = "/weeklycleaninglist"
+    return axios.put(cleaning_url + uri, {
+        id,
+        done
+    })
+}
 
 export default {
     getAvailableSlots,
@@ -113,5 +128,7 @@ export default {
     getWeeklyCleaners,
     getWeeklyCleaningList,
     insertBooking,
-    removeBooking
+    removeBooking,
+    updateBigCleaningItem,
+    updateWeeklyCleaningItem
 }

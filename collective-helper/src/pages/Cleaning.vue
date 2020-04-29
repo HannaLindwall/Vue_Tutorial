@@ -9,10 +9,10 @@
       <div class="cleaning-checklists-container">
         <b-row>
           <b-col>
-            <cleaning-list :header="'Weekly Cleaning'" :cleaningList="weeklycleaning" />
+            <cleaning-list :header="'Weekly Cleaning'" :cleaningList="weeklycleaning" :cleaningListType="1"/>
           </b-col>
           <b-col>
-            <cleaning-list :header="'Big Collective Cleaning'" :cleaningList="bigcleaning"/>
+            <cleaning-list :header="'Big Collective Cleaning'" :cleaningList="bigcleaning" :cleaningListType="2"/>
           </b-col>
         </b-row>
       </div>

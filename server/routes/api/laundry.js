@@ -2,7 +2,6 @@ const express = require('express');
 const mongodb = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-const moment = require('moment');
 
 const uri = 'mongodb+srv://test123:test123@vueapp-xtm7t.mongodb.net/test?retryWrites=true&w=majority';
 const dbName = "vue_express_database";
