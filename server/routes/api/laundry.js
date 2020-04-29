@@ -22,7 +22,6 @@ laundryRouter.get('/availabletimeslots/:date', async (req, res) => {
         const dBase = client.db(dbName);
         
         await getBookingsForDate("bookings_collection", dBase, req.params.date, async function callback1(bookingsForDate) {
-
             var allTimeslots = await getTimeslots(timeslots_collection_name, dBase);
             var bookingsPerTimeslot = allTimeslots.map(timeslot => {
                 return {
@@ -34,12 +33,15 @@ laundryRouter.get('/availabletimeslots/:date', async (req, res) => {
             });
             var allMachines = await getWashingMachines(machines_collection_name, dBase);
             allMachines = allMachines.map(machine => {
-                return machine.name;
+                return {
+                    id: machine._id,
+                    name: machine.name
+                };
             });
             var availableTimeslots = bookingsPerTimeslot.map(bookingsPerTimeslot => {
                 var availableMachines = allMachines.filter(machine => {
                     var machineIsBooked = bookingsPerTimeslot.bookings.find(booking => {
-                        return booking.machine === machine;
+                        return booking.machine === machine.name;
                     })
                     return machineIsBooked === undefined;
                 })
@@ -97,7 +99,7 @@ laundryRouter.post('/bookings', async(req, res) => {
         const dBase = client.db(dbName);
         const bookingCollection = dBase.collection(collection_name);
         await bookingCollection.insertOne({
-            date: req_body.date, 
+            date: new Date(req_body.date), 
             user: req_body.user, 
             machine: req_body.machine
         });
