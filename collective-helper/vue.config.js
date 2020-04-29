@@ -1,8 +1,8 @@
 const path = require('path')
 
 module.exports = {
+    outputDir: path.resolve(__dirname, '../server/public'),
     devServer: {
-        outputDir: path.resolve(__dirname, '../server/public'),
         proxy: {
             '/api': {
                 target: 'http://localhost:5000'
