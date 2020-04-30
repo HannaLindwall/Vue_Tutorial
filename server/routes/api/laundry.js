@@ -19,7 +19,6 @@ laundryRouter.get('/availabletimeslots/:date', async (req, res) => {
         assert.equal(null, err);
         console.log("Connected successfully to server");
         const dBase = client.db(dbName);
-        
         await getBookingsForDate("bookings_collection", dBase, req.params.date, async function callback1(bookingsForDate) {
             var allTimeslots = await getTimeslots(timeslots_collection_name, dBase);
             var bookingsPerTimeslot = allTimeslots.map(timeslot => {

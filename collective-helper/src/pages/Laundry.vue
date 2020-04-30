@@ -25,7 +25,7 @@
     <b-col>
       <div class="laundry-timeslots-container laundry-container">
         <div class="laundry-cal">
-          <p-calendar v-model="date14" :inline="true" :showWeek="true"></p-calendar>
+          <p-calendar v-model="date14" :inline="true" :showWeek="true" :minDate="minDate" @date-select="getAvailableTimeSlots"></p-calendar>
         </div>
         <div class="slot-text-style">
           <h1>Available Time Slots</h1>
@@ -70,9 +70,10 @@
           backgroundColor: "gray",
           color: "lightgray"
         },
-        selectedDate: "2020-04-28",
         date14: null,
         user: "Hanna Lindwall",
+        minDate: new Date(), 
+        selectedDate: new Date()
       }
     },
     methods: {
@@ -98,13 +99,26 @@
           console.log(err.message)
         }
       },
+      async getAvailableTimeSlots(event) {
+        try {
+          const year = event.getUTCFullYear()
+          const month = ((event.getMonth() + 1) < 10 ? "0":"") + (event.getMonth() + 1)
+          const date = ((event.getDate() < 10) ? "0": "") + event.getDate()
+          const fullDate = year + "-" + month + "-" + date
+          this.selectedDate = fullDate
+          
+          const availableSlots = await fetchData.getAvailableSlots(this.selectedDate)
+          this.availableSlots = availableSlots.data
+          this.nbrOfAvailableSlots = this.availableSlots.length
+
+        } catch(err) {
+          console.log(err.message)
+        }
+      },
       async removeBooking(bookingIndex) {
         try {
           await fetchData.removeBooking(bookingIndex)
-          // var starttime = this.bookings[bookingIndex].time 
-          // var title = this.bookings[bookingIndex].title 
-          // this.availableSlots.find(function(slot) {return slot.time===starttime}).machines.push(title)
-          // this.bookings.splice(bookingIndex, 1)
+          
           const bookings = await fetchData.getBookings(this.user)
           this.bookings = bookings.data
           this.nbrOfBookings = this.bookings.length
@@ -120,13 +134,32 @@
     },
     async created() {
       try {
+        // fetch bookings
         const bookings = await fetchData.getBookings(this.user)
         this.bookings = bookings.data
         this.nbrOfBookings = this.bookings.length
-        
-        const availableSlots = await fetchData.getAvailableSlots(this.selectedDate)
-        this.availableSlots = availableSlots.data
-        this.nbrOfAvailableSlots = this.availableSlots.length
+        // get selected date
+        const year = this.selectedDate.getUTCFullYear()
+        const month = ((this.selectedDate.getMonth() + 1) < 10 ? "0":"") + (this.selectedDate.getMonth() + 1)
+        const date = ((this.selectedDate.getDate() < 10) ? "0": "") + this.selectedDate.getDate()
+        const fullDate = year + "-" + month + "-" + date
+        this.selectedDate = fullDate
+        // delete old bookings
+        this.bookings.forEach(async booking => {
+          const dateOnly = booking.dateOnly.split("-")
+          const year = dateOnly[0]
+          const month = (parseInt(dateOnly[1]) < 10 ? "0": "") + dateOnly[1]
+          const date = (parseInt(dateOnly[2]) < 10 ? "0": "") + dateOnly[2]
+          const fullDate = year + "-" + month + "-" + date
+          const hour = this.calculateEndTime(booking.timeOnly)
+          const fullHour = (hour < 10 ? "0" : "") + hour
+          const bookingDateString = fullDate + "T" + fullHour + ":00:00.000+00:00"
+          const currentDate = new Date()
+          const bookingDate = new Date(bookingDateString)
+          if (bookingDate < currentDate) {
+            await this.removeBooking(booking.id)
+          }
+        });
       } catch(err) {
         console.log(err.message)
       }
