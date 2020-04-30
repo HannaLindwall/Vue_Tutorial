@@ -106,7 +106,6 @@
           const date = ((event.getDate() < 10) ? "0": "") + event.getDate()
           const fullDate = year + "-" + month + "-" + date
           this.selectedDate = fullDate
-          
           const availableSlots = await fetchData.getAvailableSlots(this.selectedDate)
           this.availableSlots = availableSlots.data
           this.nbrOfAvailableSlots = this.availableSlots.length
@@ -145,6 +144,7 @@
         const fullDate = year + "-" + month + "-" + date
         this.selectedDate = fullDate
         // delete old bookings
+        var deletedItems = false
         this.bookings.forEach(async booking => {
           const dateOnly = booking.dateOnly.split("-")
           const year = dateOnly[0]
@@ -157,9 +157,15 @@
           const currentDate = new Date()
           const bookingDate = new Date(bookingDateString)
           if (bookingDate < currentDate) {
+            deletedItems = true
             await this.removeBooking(booking.id)
           }
         });
+        if (!deletedItems) {
+          const availableSlots = await fetchData.getAvailableSlots(this.selectedDate)
+          this.availableSlots = availableSlots.data
+          this.nbrOfAvailableSlots = this.availableSlots.length
+        }
       } catch(err) {
         console.log(err.message)
       }
